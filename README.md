@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+I have created a video stream service where you can upload videos and clips directly from the s3 bucket.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+I use AWS services like (AWS S3, CLOUDFRONT and also REACT for the front-end of the app) 
 
-## Available Scripts
+First I started by creating a bucket in AWS S3 so i can use it to store the videos that i will be uploading.
 
-In the project directory, you can run:
+Now we create a CloudFront and configure access to the S3 bucket.
 
-### `npm start`
+Followed it up by creating a access control setting for CloudFront, (Origin Access).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This was needed for CloudFront distribution to use when creating.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Create the distribution and while that take time to deploy, update the S3 bucket policy by copying 
 
-### `npm test`
+the pop up and pasting it into the permision bucket policy json and paste, save to update it.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+I uploaded a video into the bucket then I copy the domain name url in CloudFront pasted it into the 
 
-### `npm run build`
+url bar add a / then copy the S3 bucket key url and paste it after the /, search and your video that
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+you placed in the S3 bucket should pop up. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Now we build the front-end with React to serve content to consumers.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Since I build the Website from scratch I open the terminal from my VS code software and use the Cmd
 
-### `npm run eject`
+npx create-react-app-video-streaming-service
+cd video-streaming-service
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+I added a header to my App.js file in src for the title of the website saying
+<h2>Welcome to My Awsome Video Streaming Site</h2>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Added text alignment for the site in my App.css file
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+also i added the width and height format of the video and implementing controls to the videos like fullscreen, volume button, download, playbackspeed, picture in picture and a play button to pause whenever.
