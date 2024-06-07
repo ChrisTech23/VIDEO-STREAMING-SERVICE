@@ -1,35 +1,45 @@
-I have created a video stream service where you can upload videos and clips directly from the s3 bucket.
+## Video Streaming Service Setup and Configuration Guide
 
-I use AWS services like (AWS S3, CLOUDFRONT and also REACT for the front-end of the app) 
+### Overview
+This guide provides detailed steps on how to set up a video streaming service using AWS S3 for video storage, AWS CloudFront for content delivery, and React for the front-end user interface.
 
-First I started by creating a bucket in AWS S3 so i can use it to store the videos that i will be uploading.
+### Prerequisites
+- AWS Account
+- Node.js and npm installed
+- Basic knowledge of React
 
-Now we create a CloudFront and configure access to the S3 bucket.
+### Step 1: Setting Up AWS S3
+1. Log into your AWS Management Console.
+2. Navigate to the S3 service and create a new bucket.
+   - Ensure that the bucket is set to public access if necessary.
+3. Upload your initial video files to the S3 bucket.
 
-Followed it up by creating a access control setting for CloudFront, (Origin Access).
+### Step 2: Configuring AWS CloudFront
+1. Create a new CloudFront distribution.
+2. Set the origin to the S3 bucket you created earlier.
+3. Configure the Origin Access Identity (OAI) to restrict direct access to the S3 bucket.
+4. Update the S3 bucket policy to grant access to the CloudFront OAI.
+5. Note the CloudFront distribution domain name for later use.
 
-This was needed for CloudFront distribution to use when creating.
+### Step 3: Building the Front-End with React
+1. Open your terminal and navigate to your project directory.
+2. Run the following commands to create a new React application:
+   ```bash
+   npx create-react-app video-streaming-service
+   cd video-streaming-service
+   ```
+3. Update the `App.js` file to include a header:
+   ```jsx
+   <h2>Welcome to My Awesome Video Streaming Site</h2>
+   ```
+4. Style the application by modifying the `App.css` file:
+   - Add text alignment, video width, height, and controls (fullscreen, volume, download, playback speed, picture-in-picture, and play/pause).
 
-Create the distribution and while that take time to deploy, update the S3 bucket policy by copying 
+### Step 4: Integrating the Front-End with CloudFront
+1. In your React application, use the CloudFront domain name to construct URLs to the videos stored in your S3 bucket.
+2. Implement video playback functionality in your React components.
 
-the pop up and pasting it into the permision bucket policy json and paste, save to update it.
+### Conclusion
+By following these steps, you will have a fully functional video streaming service that utilizes AWS for backend storage and delivery, and React for the front-end interface.
 
-I uploaded a video into the bucket then I copy the domain name url in CloudFront pasted it into the 
 
-url bar add a / then copy the S3 bucket key url and paste it after the /, search and your video that
-
-you placed in the S3 bucket should pop up. 
-
-Now we build the front-end with React to serve content to consumers.
-
-Since I build the Website from scratch I open the terminal from my VS code software and use the Cmd
-
-npx create-react-app-video-streaming-service
-cd video-streaming-service
-
-I added a header to my App.js file in src for the title of the website saying
-<h2>Welcome to My Awsome Video Streaming Site</h2>
-
-Added text alignment for the site in my App.css file
-
-also i added the width and height format of the video and implementing controls to the videos like fullscreen, volume button, download, playbackspeed, picture in picture and a play button to pause whenever.
